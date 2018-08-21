@@ -1,0 +1,7 @@
+{
+  "name": "nohora",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
