@@ -5,6 +5,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { MyApp } from '../../app/app.component';
 import { ReportPage } from '../report/report';
+import { SignUpPage } from '../sign-up/sign-up';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -22,8 +24,14 @@ export class LoginPage {
   @ViewChild(Nav) nav: Nav;
 
 
-  constructor(private viewCtrl: ViewController,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private viewCtrl: ViewController,
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
   }
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
@@ -34,5 +42,10 @@ export class LoginPage {
     // we wouldn't want the back button to show in this scenario
     this.navCtrl.setRoot(ReportPage);
   }
+
+  goSignUp(){
+    this.navCtrl.push(SignUpPage);
+  }
+
 
 }

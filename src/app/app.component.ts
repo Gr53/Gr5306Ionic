@@ -30,7 +30,8 @@ export class MyApp {
       //{ title: 'Home', component: HomePage },
       { title: 'Reportar Maltrato', component: ReportPage },
       { title: 'Lista Reportes', component: ListPage },
-      { title: 'Noticias', component: NewsPage }
+      { title: 'Noticias', component: NewsPage },
+      { title: 'Salir', component: LoginPage } // temporal
     ];
 
   }
