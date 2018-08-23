@@ -6,6 +6,8 @@ import { HomePage } from '../home/home';
 import { MyApp } from '../../app/app.component';
 import { ReportPage } from '../report/report';
 import { SignUpPage } from '../sign-up/sign-up';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { AlertController } from 'ionic-angular';
 
 
 /**
@@ -23,11 +25,18 @@ import { SignUpPage } from '../sign-up/sign-up';
 export class LoginPage {
   @ViewChild(Nav) nav: Nav;
 
+  respouceData: any;
+  userData = {
+    auth: {"email":"", "password":""}
+  };
+
 
   constructor(
     private viewCtrl: ViewController,
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public authServiceProvider: AuthServiceProvider,
+    public alertCtl: AlertController
   ) {
   }
 
@@ -46,6 +55,25 @@ export class LoginPage {
   goSignUp(){
     this.navCtrl.push(SignUpPage);
   }
+
+
+  login(){
+    this.authServiceProvider.postData(this.userData, "user_token").then((result) => {
+      this.respouceData = result;
+      console.log(this.respouceData);
+      //localStorage.setItem('user', JSON.stringify(this.respouceData));
+      //this.navCtrl.push(HomePage);
+    }, (err) => {
+      console.log("error ___________________")
+      let alert = this.alertCtl.create({
+        title: 'Iniciar Sesión',
+        subTitle: 'No se pudo iniciar sesión, por favor intente mas tarde.',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    });
+  }
+
 
 
 }

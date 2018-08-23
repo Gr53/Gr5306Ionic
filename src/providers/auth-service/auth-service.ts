@@ -1,5 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
+
+let apiUrl = 'http://localhost:3000/';
 
 /*
   Generated class for the AuthServiceProvider provider.
@@ -10,8 +13,26 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthServiceProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(
+    //public http: HttpClient
+    public http: Http
+  ) {
     console.log('Hello AuthServiceProvider Provider');
+  }
+
+  postData(credentials, type){
+    let headers = new Headers(
+      {
+        'Content-Type' : 'application/json'
+      });
+    let options = new RequestOptions({ headers: headers });
+    return new Promise((resolve, reject) =>{
+        this.http.post(apiUrl+type, JSON.stringify(credentials), options).subscribe(res =>{
+          resolve(res.json());
+        }), (err) => {
+          reject(err);
+        }
+    });
   }
 
 }
