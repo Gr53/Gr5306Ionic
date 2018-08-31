@@ -9,6 +9,8 @@ import {ReportPage} from '../pages/report/report';
 import {NewsPage} from '../pages/news/news';
 import {LoginPage} from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up'
+import { OneSignal } from '@ionic-native/onesignal';
+
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -46,7 +48,8 @@ import { HttpModule } from '@angular/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
+    OneSignal,
   ]
 })
 export class AppModule {}

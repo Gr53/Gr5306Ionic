@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,7 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ReportPage } from '../pages/report/report';
 import { NewsPage } from '../pages/news/news';
-import { LoginPage } from '../pages/login/login'
+import { LoginPage } from '../pages/login/login';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,6 +23,8 @@ export class MyApp {
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
+    public oneSignal: OneSignal,
+    public alertCtrl: AlertController,
     public splashScreen: SplashScreen) {
     this.initializeApp();
 
@@ -42,6 +45,27 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      //jj debug
+      window["plugins"].OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+      var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      const alert = this.alertCtrl.create({
+        title: jsonData.title,
+        subTitle: jsonData.body,
+        buttons: ['OK']
+      });
+      alert.present();
+    
+      };
+  
+      window["plugins"].OneSignal
+        .startInit("097d4197-e408-408e-93ff-820844761c28", "554163196066")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
+
+
     });
   }
 

@@ -63,6 +63,7 @@ export class LoginPage {
       console.log(this.respouceData);
       //localStorage.setItem('user', JSON.stringify(this.respouceData));
       //this.navCtrl.push(HomePage);
+      this.navCtrl.setRoot(ReportPage);
     }, (err) => {
       console.log("error ___________________")
       let alert = this.alertCtl.create({
