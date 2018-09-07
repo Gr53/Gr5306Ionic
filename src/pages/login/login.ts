@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { Nav, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Nav } from 'ionic-angular';
 
-import { HomePage } from '../home/home';
-import { MyApp } from '../../app/app.component';
 import { ReportPage } from '../report/report';
 import { SignUpPage } from '../sign-up/sign-up';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -32,7 +30,6 @@ export class LoginPage {
 
 
   constructor(
-    private viewCtrl: ViewController,
     public navCtrl: NavController,
     public navParams: NavParams,
     public authServiceProvider: AuthServiceProvider,
