@@ -55,7 +55,7 @@ export class LoginPage {
 
 
   login(){
-    this.authServiceProvider.postData(this.userData, "user_token").then((result) => {
+    this.authServiceProvider.postLogin(this.userData, "login_token").then((result) => {
       this.respouceData = result;
       console.log(this.respouceData);
       //localStorage.setItem('user', JSON.stringify(this.respouceData));

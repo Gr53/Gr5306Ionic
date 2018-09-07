@@ -19,20 +19,26 @@ export class AuthServiceProvider {
   ) {
     console.log('Hello AuthServiceProvider Provider');
   }
-
-  postData(credentials, type){
+  // #######
+  // Login
+  // ######
+  postLogin(credentials, endPoint){
     let headers = new Headers(
       {
         'Content-Type' : 'application/json'
       });
     let options = new RequestOptions({ headers: headers });
     return new Promise((resolve, reject) =>{
-        this.http.post(apiUrl+type, JSON.stringify(credentials), options).subscribe(res =>{
+        this.http.post(apiUrl+endPoint, JSON.stringify(credentials), options).subscribe(res =>{
           resolve(res.json());
         }), (err) => {
           reject(err);
         }
     });
   }
+  // #######
+  // NN
+  // ######
+
 
 }
